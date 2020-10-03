@@ -1,0 +1,42 @@
+cnn:
+    <div class="zn-body__paragraph">
+Fox:
+    <div class="article-content">
+Economist:
+    <div class="article__body-text"
+Reuters:
+    <div class="StandardArticleBody__container"> & <div  class="StandardArticleBody__body"> & then <p>
+ABC:
+    <article class="Article__Content story">
+CBS:
+    <div class="content__body">
+NBC:
+    <div class="article-body__content">
+AP:
+    <div class="Article">
+Bloomberg:
+    NA
+AFP:
+    <div class="w75 right txt12 txtlh18 txtblack txtjustify textcontent">
+NPR:
+    <div id="storytext" class="storytext storylocation linklocation">
+BBC:
+    <div class="story-body__inner">
+Washington Post:
+    NA
+Wall Street Journal:
+    <div class="module">
+PBS:
+    audio transcripts
+The New York Times:
+    NA
+The Hill:
+    <div class="field-items">
+The Fiscal Times:
+    <div class="view-content">
+National Review:
+    <div class="article-content">
+Politico:
+    <div class="story-text">
+The Guardian:
+    <div class="content__article-body from-content-api js-article__body">
