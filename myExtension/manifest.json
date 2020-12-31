@@ -1,0 +1,23 @@
+{
+
+  "manifest_version": 2,
+  "name": "My extension",
+  "version": "0.1",
+
+  "description": "A browser extension that will pull a plurality of public political personnel from a number of news sites all for fluid fact finding.",
+  "homepage_url": "https://github.com/open-analysis/Poller",
+  "icons": {
+    "48": "icons/poller-48.png"
+  },
+  
+  "permissions": [
+	"activeTab"
+  ],
+  
+  "browser_action": {
+    "default_icon": "icons/poller-32.png",
+    "default_title": "Political Puller",
+    "default_popup": "popup/poller.html"
+  }
+  
+}

@@ -1,0 +1,25 @@
+html, body {
+  width: 125px;
+}
+
+#popup-content {
+	height: 200px;
+	width: 100px;
+	overflow-y: auto;
+	
+	text-align: center;
+	margin: 3% auto;
+	padding: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.button {
+  margin: 3% auto;
+  padding: 4px;
+  text-align: center;
+  font-size: 1.5em;
+  cursor: pointer;
+}
