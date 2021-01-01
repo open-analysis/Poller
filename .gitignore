@@ -3614,3 +3614,5 @@ Poller/ppl/Zsa_Zsa_Gabor_Fast_Facts/CNN_List.txt
 Poller/ppl/Zuma/CNN_List.txt
 *.jpg
 *.png
+Poller/folders.txt
+Poller/.ipynb_checkpoints/Counter-checkpoint.ipynb
