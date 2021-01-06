@@ -1,7 +1,7 @@
 {
 
   "manifest_version": 2,
-  "name": "My extension",
+  "name": "Political Poller",
   "version": "0.1",
 
   "description": "A browser extension that will pull a plurality of public political personnel from a number of news sites all for fluid fact finding.",

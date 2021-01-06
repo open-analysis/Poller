@@ -1,7 +1,4 @@
 - Extension:
-	- Find the number of folders within the ppl folder
-	- Find the names of these subfolders
-	- Display the names as buttons within the JS popup
 	- when a name button is clicked, show the title of the articles that are related to it
 	- when these buttons are clicked, take the user to a website
 - Gathering articles:
@@ -9,3 +6,5 @@
 - Parsing articles:
 	- Better named entity recognition
 		- likely have to train own NN/ML algo
+- Extension:
+	- find a way to communicate with a server to get the names, folders, etc.
