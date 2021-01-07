@@ -1,6 +1,3 @@
-- Extension:
-	- when a name button is clicked, show the title of the articles that are related to it
-	- when these buttons are clicked, take the user to a website
 - Gathering articles:
 	- get more scrapers setup for different news sites
 - Parsing articles:

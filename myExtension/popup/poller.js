@@ -1,6 +1,8 @@
 var button_array = [];
 var divID = document.getElementById('popup-content');
 var i, numPeople;
+var text = new Array();
+var links = new Array();
 numPeople = 2;
 
 // init the popup with a number of buttons determined by 
@@ -8,7 +10,6 @@ numPeople = 2;
 function init()
 {			
 	readNames();
-	
 }
 
 // changes the current list of buttons to a new
@@ -18,13 +19,13 @@ function button_clicked(name)
 	// clear the old set of buttons
 	for (i= 0; i < numPeople; i++)
 	{
-		var tmpBtn = document.getElementById('personButton');
+		let tmpBtn = document.getElementById('personButton');
 		divID.removeChild(tmpBtn);
 	}
 	
 	// change the heading
-	var heading = document.getElementById('heading');
-	heading.innerHTML = "New List!";
+	let heading = document.getElementById('heading');
+	heading.innerHTML = name;
 
 	/*
 		This section creates a button with links to the article that's attached to the title.
@@ -32,6 +33,7 @@ function button_clicked(name)
 		Each section should say the news site's name
 		The number of buttons created should be the same as the number of links provided
 	*/
+	/*
 	for(i = 0; i < 3; i++)
 	{
 		var section = document.createElement('p');
@@ -39,9 +41,18 @@ function button_clicked(name)
 		section.textContent = name;
 		divID.appendChild(section);
 		
+		
+		
 		createButton(8, "linkButton", "button", "New Button!", '#ffffffff');
 	}
-	
+	*/
+	// temp solution to the above problem since there's only one file to deal with
+	var section = document.createElement('p');
+	section.id = "newsSiteDiv";
+	section.textContent = "CNN";
+	divID.appendChild(section);
+
+	readNewsSite(name);
 }
 
 /*
@@ -93,15 +104,6 @@ function createButton(numBtns, b_id, b_class, b_text, b_bg)
 		}
 	}
 	
-	// adding the event listener to each of these buttons
-	for(i = 0; i < numBtns; i++)
-	{
-		button_array[i].addEventListener("click", function() {
-			//this.style.background = '#689fbd';
-			button_clicked(this.textContent);
-		})
-	}
-	
 }
 
 function readNames()
@@ -130,8 +132,6 @@ function readNames()
 
 function addNameToButton(data)
 {
-	//var outputElem = document.getElementById('output');
-	
 	if (data)
 	{
 		let text = new Array();
@@ -145,34 +145,93 @@ function addNameToButton(data)
 		//outputElem.textContent = numPeople;
 		
 		createButton(numPeople, "personButton", "button", text, '#8fd8ff');
+		
+		// adding the event listener to each of these buttons
+		for(i = 0; i < button_array.length; i++)
+		{
+			button_array[i].addEventListener("click", function() {
+				//this.style.background = '#689fbd';
+				button_clicked(this.textContent);
+			})
+		}
 	}
 	else
 	{
-		outputElem.textContent = "Failed to get data";
+		console.log("Failed to get data");
 	}
 }
 
 function readNewsSite(name)
 {
-	const path = "../ppl.txt" + name + "/cnn.txt";
-	
-	var output = document.createElement('p');
-	output.id = "output";
-	output.textContent = "I'm the output!";
-	divID.appendChild(output);
+	const path = "../ppl/" + name + "/CNN_List.txt";
 	
 	fetch(path).then(function(response)
 	{
 		return response.text()
 	}).then(function(text)
 	{
-		//return text;
-		output.textContent = text;
+		addNewsSiteButton(text);
 	}).catch(function(err)
 	{
 		console.log('Fetch problem: ' + err.message);
 	});
 }
+
+function addNewsSiteButton(data)
+{		
+	var outputElem = document.createElement('p');
+	outputElem.id = "output";
+	outputElem.textContent = "Output";
+	divID.appendChild(outputElem);
+
+	if (data)
+	{
+		let numLinks = 0;
+		
+		let  = new Array();
+		text = [];
+		links = [];
+		
+		tmpArr = data.split('\n');
+		numLinks = (tmpArr.length - 1) / 2;
+		
+		for (i = 0; i < numLinks; i++)
+		{
+			text[i] = tmpArr[0];
+			tmpArr.shift();
+			links[i] = tmpArr[0];
+			tmpArr.shift();
+		}
+		
+		//outputElem.textContent = numLinks + '\n';
+		//outputElem.textContent = link[0] + '\n' + link[1] + '\n';
+		
+		createButton(numLinks, "linkButton", "button", text, '#ffffffff');
+	
+		// adding the event listener to each of these buttons
+		for(i = 0; i < numLinks; i++)
+		{	
+			var tmp = links[i];
+			button_array[i].addEventListener("click", function()
+			{
+				if (tmp)
+				{
+					window.open(tmp, "_blank");
+				}
+				else
+				{
+					outputElem.textContent = "FUCK";
+				}
+			});
+		}
+	}
+	else
+	{
+		console.log("Failed to get data");
+	}
+}
+
+
 
 init();
 
