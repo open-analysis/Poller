@@ -1,8 +1,6 @@
 var button_array = [];
 var divID = document.getElementById('popup-content');
 var i, numPeople;
-var text = new Array();
-var links = new Array();
 numPeople = 2;
 
 // init the popup with a number of buttons determined by 
@@ -12,55 +10,10 @@ function init()
 	readNames();
 }
 
-// changes the current list of buttons to a new
-// set of buttons that are different
-function button_clicked(name)
-{	
-	// clear the old set of buttons
-	for (i= 0; i < numPeople; i++)
-	{
-		let tmpBtn = document.getElementById('personButton');
-		divID.removeChild(tmpBtn);
-	}
-	
-	// change the heading
-	let heading = document.getElementById('heading');
-	heading.innerHTML = name;
-
-	/*
-		This section creates a button with links to the article that's attached to the title.
-		The for loop is for the number of news sites/text files that are in each person's folder
-		Each section should say the news site's name
-		The number of buttons created should be the same as the number of links provided
-	*/
-	/*
-	for(i = 0; i < 3; i++)
-	{
-		var section = document.createElement('p');
-		section.id = "newsSiteDiv";
-		section.textContent = name;
-		divID.appendChild(section);
-		
-		
-		
-		createButton(8, "linkButton", "button", "New Button!", '#ffffffff');
-	}
-	*/
-	// temp solution to the above problem since there's only one file to deal with
-	var section = document.createElement('p');
-	section.id = "newsSiteDiv";
-	section.textContent = "CNN";
-	divID.appendChild(section);
-
-	readNewsSite(name);
-}
-
 /*
 	Creates a button using a specified ID, class, innerHTML, and background style.
-	Foregoes the creation of an event listener, meaning that it will have to be created 
-	outside of this function by going through button_array.
 */
-function createButton(numBtns, b_id, b_class, b_text, b_bg)
+function createNameButton(numBtns, b_id, b_class, b_text, b_bg)
 {
 	// check if the input text is an array
 	if (Array.isArray(b_text))
@@ -104,6 +57,15 @@ function createButton(numBtns, b_id, b_class, b_text, b_bg)
 		}
 	}
 	
+	// adding the event listener to each of these buttons
+	for(i = 0; i < button_array.length; i++)
+	{
+		button_array[i].addEventListener("click", function() {
+			//this.style.background = '#689fbd';
+			button_clicked(this.textContent);
+		})
+	}
+	
 }
 
 function readNames()
@@ -144,16 +106,7 @@ function addNameToButton(data)
 		
 		//outputElem.textContent = numPeople;
 		
-		createButton(numPeople, "personButton", "button", text, '#8fd8ff');
-		
-		// adding the event listener to each of these buttons
-		for(i = 0; i < button_array.length; i++)
-		{
-			button_array[i].addEventListener("click", function() {
-				//this.style.background = '#689fbd';
-				button_clicked(this.textContent);
-			})
-		}
+		createNameButton(numPeople, "personButton", "button", text, '#8fd8ff');
 	}
 	else
 	{
@@ -161,8 +114,52 @@ function addNameToButton(data)
 	}
 }
 
+// changes the current list of buttons to a new
+// set of buttons that are different
+function button_clicked(name)
+{	
+	// clear the old set of buttons
+	for (i= 0; i < numPeople; i++)
+	{
+		let tmpBtn = document.getElementById('personButton');
+		divID.removeChild(tmpBtn);
+	}
+	
+	// change the heading
+	let heading = document.getElementById('heading');
+	heading.innerHTML = name;
+
+	/*
+		This section creates a button with links to the article that's attached to the title.
+		The for loop is for the number of news sites/text files that are in each person's folder
+		Each section should say the news site's name
+		The number of buttons created should be the same as the number of links provided
+	*/
+	/*
+	for(i = 0; i < 3; i++)
+	{
+		var section = document.createElement('p');
+		section.id = "newsSiteDiv";
+		section.textContent = name;
+		divID.appendChild(section);
+		
+		
+		
+		createNameButton(8, "linkButton", "button", "New Button!", '#ffffffff');
+	}
+	*/
+	// temp solution to the above problem since there's only one file to deal with
+	var section = document.createElement('p');
+	section.id = "newsSiteDiv";
+	section.textContent = "CNN";
+	divID.appendChild(section);
+
+	readNewsSite(name);
+}
+
 function readNewsSite(name)
 {
+	//const path = "http://localhost:3888/D:/Dev/Python/poli/Poller/ppl" + name + "/CNN_List.txt";
 	const path = "../ppl/" + name + "/CNN_List.txt";
 	
 	fetch(path).then(function(response)
@@ -179,21 +176,20 @@ function readNewsSite(name)
 
 function addNewsSiteButton(data)
 {		
+
 	var outputElem = document.createElement('p');
 	outputElem.id = "output";
 	outputElem.textContent = "Output";
 	divID.appendChild(outputElem);
-
+	
+	var text = new Array();
+	var links = new Array();
+	
 	if (data)
-	{
-		let numLinks = 0;
+	{		
+		var tmpArr = data.split('\n');
 		
-		let  = new Array();
-		text = [];
-		links = [];
-		
-		tmpArr = data.split('\n');
-		numLinks = (tmpArr.length - 1) / 2;
+		var numLinks = (tmpArr.length - 1) / 2;
 		
 		for (i = 0; i < numLinks; i++)
 		{
@@ -203,27 +199,7 @@ function addNewsSiteButton(data)
 			tmpArr.shift();
 		}
 		
-		//outputElem.textContent = numLinks + '\n';
-		//outputElem.textContent = link[0] + '\n' + link[1] + '\n';
-		
-		createButton(numLinks, "linkButton", "button", text, '#ffffffff');
-	
-		// adding the event listener to each of these buttons
-		for(i = 0; i < numLinks; i++)
-		{	
-			var tmp = links[i];
-			button_array[i].addEventListener("click", function()
-			{
-				if (tmp)
-				{
-					window.open(tmp, "_blank");
-				}
-				else
-				{
-					outputElem.textContent = "FUCK";
-				}
-			});
-		}
+		createSiteButton(numLinks, "linkButton", "button", text, links, '#ffffffff');
 	}
 	else
 	{
@@ -231,9 +207,42 @@ function addNewsSiteButton(data)
 	}
 }
 
+/*
+	Creates a button using a specified ID, class, innerHTML/textContent, an array of links, and background style.
+	Creates an a element and appends the button to it as a child.
+*/
+function createSiteButton(numBtns, b_id, b_class, b_text, b_link, b_bg)
+{
+	var outputElem = document.getElementById('output');
+	
+	// check if the input text is an array
+	if (Array.isArray(b_text))
+	{
+		//var tmpLink = null;
+		// create the new set of buttons
+		for (i= 0; i < numBtns; i++)
+		{
+			var a = document.createElement('a');
+			var newButton = document.createElement('button');
+			var tmpLink = b_link[i];
+			newButton.id = b_id;
+			newButton.class = b_class;
+			newButton.innerHTML = b_text[i];
+			newButton.style.background = b_bg;
+			
+			a.href = tmpLink;
+			
+			a.appendChild(newButton);
+			divID.appendChild(a);
+			
+			button_array[i] = newButton;
+		}
+	}
+}
 
 
 init();
+
 
 
 

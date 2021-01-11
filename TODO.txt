@@ -1,7 +1,8 @@
+- Extension:
+	- get the link that's associated with the button to not be the last link in the array
+	- find a way to communicate with a server to get the names, folders, etc.
 - Gathering articles:
 	- get more scrapers setup for different news sites
 - Parsing articles:
 	- Better named entity recognition
 		- likely have to train own NN/ML algo
-- Extension:
-	- find a way to communicate with a server to get the names, folders, etc.
