@@ -1,6 +1,7 @@
 - Extension:
-	- get the link that's associated with the button to not be the last link in the array
 	- find a way to communicate with a server to get the names, folders, etc.
+		- "Then it would provide something like a REST API or a websockets service. 
+		Your browser extension would then talk to that service."
 - Gathering articles:
 	- get more scrapers setup for different news sites
 - Parsing articles:

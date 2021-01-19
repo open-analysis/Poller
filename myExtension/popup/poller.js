@@ -7,6 +7,7 @@ numPeople = 2;
 // numPeople that  when clicked change to a different list of buttons
 function init()
 {			
+	console.log("Init!");
 	readNames();
 }
 
@@ -128,7 +129,7 @@ function button_clicked(name)
 	// change the heading
 	let heading = document.getElementById('heading');
 	heading.innerHTML = name;
-
+	
 	/*
 		This section creates a button with links to the article that's attached to the title.
 		The for loop is for the number of news sites/text files that are in each person's folder
@@ -147,7 +148,7 @@ function button_clicked(name)
 		
 		createNameButton(8, "linkButton", "button", "New Button!", '#ffffffff');
 	}
-	*/
+	*/		
 	// temp solution to the above problem since there's only one file to deal with
 	var section = document.createElement('p');
 	section.id = "newsSiteDiv";
