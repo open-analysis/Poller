@@ -3614,8 +3614,14 @@ Poller/ppl/Zsa_Zsa_Gabor_Fast_Facts/CNN_List.txt
 Poller/ppl/Zuma/CNN_List.txt
 *.jpg
 *.png
+Poller/folders.txt
+Poller/.ipynb_checkpoints/Counter-checkpoint.ipynb
+myExtension/ppl/'Barney_Miller/CNN_List.txt
+myExtension/ppl/'Barney_Miller/CNN_List.txt
+myExtension/ppl/'Barney_Miller/CNN_List.txt
 myExtension/ppl/'Barney_Miller/CNN_List.txt
 myExtension/ppl/'Hail_Trump/CNN_List.txt
+myExtension/ppl/'Michael_J_Fox/CNN_List.txt
 myExtension/ppl/'Michael_J_Fox/CNN_List.txt
 myExtension/ppl/'Take_Trump/CNN_List.txt
 myExtension/ppl/50_Cent/CNN_List.txt
@@ -7182,4 +7188,3 @@ myExtension/ppl/Zola/CNN_List.txt
 myExtension/ppl/Zsa_Zsa_Gabor/CNN_List.txt
 myExtension/ppl/Zsa_Zsa_Gabor_Fast_Facts/CNN_List.txt
 myExtension/ppl/Zuma/CNN_List.txt
-Poller/.ipynb_checkpoints/Counter-checkpoint.ipynb
